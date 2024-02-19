@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mon-deployment-canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: motd
+  template:
+    metadata:
+      labels:
+        app: motd
+    spec:
+      containers:
+      - name: motd
+        image: amadouth/motd-api:latest
+        env:
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: motdconfigmap
+              key: message
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mon-service-loadbalancer
+spec:
+  selector:
+    app: motd
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 80

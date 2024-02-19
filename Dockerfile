@@ -11,7 +11,7 @@ COPY motd-api.py .
 RUN pip3 install Flask
 
 # Exposition du port défini par la variable d'environnement
-ENV APP_PORT=80
+ENV APP_PORT=5000
 
 # Commande pour exécuter l'application
 CMD ["python", "motd-api.py"]

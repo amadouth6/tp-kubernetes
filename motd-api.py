@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Récupération des variables d'environnement
 MESSAGE = os.environ.get('MESSAGE', 'Welcome to MOTD API!')
-APP_PORT = int(os.environ.get('APP_PORT', 5000))
+APP_PORT = int(os.environ.get('APP_PORT', 80))
 
 @app.route('/')
 def get_motd():

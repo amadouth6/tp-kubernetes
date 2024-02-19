@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: motd
+  labels:
+    app: motd
+spec:
+  containers:
+  - name: motd
+    image: amadouth/motd-api:latest
+    ports:
+    - containerPort: 80
